@@ -1,0 +1,34 @@
+{
+  "name": "next-ts-starter-template",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint && eslint . --ext ts --ext tsx --ext js && npx stylelint \"**/*.{css,scss,sass}\"",
+    "prepare": "husky install",
+    "lint-fix": "next lint && eslint . --ext ts --ext tsx --ext js --fix && npx stylelint --fix \"**/*.{css,scss,sass}\" && prettier --write .",
+    "pre-commit": "yarn lint-fix"
+  },
+  "dependencies": {
+    "next": "12",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "sass": "^1.54.3"
+  },
+  "devDependencies": {
+    "@types/node": "18.6.2",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.31.0",
+    "eslint": "8.20.0",
+    "eslint-config-next": "12.2.3",
+    "husky": "^8.0.0",
+    "prettier": "^2.7.1",
+    "stylelint": "^14.9.1",
+    "stylelint-config-standard": "^26.0.0",
+    "stylelint-config-standard-scss": "^5.0.0",
+    "typescript": "4.7.4"
+  }
+}

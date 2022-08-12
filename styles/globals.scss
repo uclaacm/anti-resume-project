@@ -1,0 +1,28 @@
+/* you can remove westwood css if you don't want to use it,
+examples of how it looks here! https://uclaacm.github.io/WestwoodCSS/ */
+@import "westwood.min.css";
+@import "global_variables";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: $acm-blue;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* this overrides a child div's display, which is useful for nullifying next/image's wrapper */
+.force-child-display-block > div {
+  display: block !important;
+}
+
+description-list {
+  font-size: 1.5rem;
+}
