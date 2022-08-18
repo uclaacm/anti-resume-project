@@ -46,9 +46,14 @@
 }
 
 .description {
-  margin: 2rem 0;
+  margin: 2rem 0; // why do we put the 0 after this? - edmond
   line-height: 1.5;
   font-size: 1.5rem;
+}
+
+.content {
+  margin: 2rem 0;
+  padding: 1rem 0;
 }
 
 .code {
