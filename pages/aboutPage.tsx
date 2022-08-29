@@ -9,15 +9,26 @@ export default function AboutPage() {
       <div className={styles.main}>
         <div className={styles.content}>
           <h1 className={styles.description}>Background</h1>
-          <p> You are more than your resume. The goal of Anti-Resume is to
-            provide a platform that showcases the failures and accomplishments  </p>
+          <p>
+            You are more than your resume. The goal of Anti-Resume is to provide
+            a platform that showcases the failures and accomplishments of Bruins
+            from all backgrounds. We at ACM aim to normalize discussions of
+            failure and imposter syndrome and promote a campus community where
+            everyone can thrive.LINTING BRUH
+          </p>
           {/* of Bruins from all backgrounds. We at ACM aim to normalize discussions of
           failure and imposter syndrome and promote a campus community where
           everyone can thrive. I GOT LINTED WHATS*/}
         </div>
 
-        <h1 className={styles.description}>How can I contribute my Anti-Resume?</h1>
-        <a href="https://forms.gle/jGuKbj1pgnXWq3T77" target="_blank" rel="noopener noreferrer">
+        <h1 className={styles.description}>
+          How can I contribute my Anti-Resume?
+        </h1>
+        <a
+          href="https://forms.gle/jGuKbj1pgnXWq3T77"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <button>Add your anti-resume</button>
         </a>
         <h1 className={styles.description}>Reach out!</h1>

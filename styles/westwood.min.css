@@ -44,6 +44,7 @@ pre > code { padding: 10px; display: block; overflow-x: auto; }
   .col-1 { grid-column: span 1; }
 }
 
+/*
 button,
 input[type="button"],
 input[type="checkbox"],
@@ -87,7 +88,7 @@ textarea:disabled { cursor: not-allowed; opacity: 0.5; }
 ::placeholder { color: var(--form-placeholder); }
 :input-placeholder { color: var(--form-placeholder); }
 ::placeholder { color: var(--form-placeholder); }
-html { box-sizing: border-box; }
+html { box-sizing: border-box; } */
 
 *,
 ::after,
