@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
 
-
 interface LayoutProps {
   children: JSX.Element;
 }
