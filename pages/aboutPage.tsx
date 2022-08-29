@@ -15,10 +15,8 @@ export default function AboutPage() {
             from all backgrounds. We at ACM aim to normalize discussions of
             failure and imposter syndrome and promote a campus community where
             everyone can thrive.LINTING BRUH
+            {' '}
           </p>
-          {/* of Bruins from all backgrounds. We at ACM aim to normalize discussions of
-          failure and imposter syndrome and promote a campus community where
-          everyone can thrive. I GOT LINTED WHATS*/}
         </div>
 
         <h1 className={styles.description}>
