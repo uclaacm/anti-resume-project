@@ -14,8 +14,7 @@ export default function AboutPage() {
             a platform that showcases the failures and accomplishments of Bruins
             from all backgrounds. We at ACM aim to normalize discussions of
             failure and imposter syndrome and promote a campus community where
-            everyone can thrive.LINTING BRUH
-            {' '}
+            everyone can thrive.LINTING BRUH{' '}
           </p>
         </div>
 
