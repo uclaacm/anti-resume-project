@@ -1,9 +1,13 @@
 import styles from '../styles/Home.module.scss';
 
-export default function customButton() {
+interface ButtonProps {
+  title: string;
+}
+
+export default function customButton(props: ButtonProps) {
   return (
-    <div>
-      <button className={styles.button}>hey</button>
+    <div className={styles['button']}>
+      <button className={styles['button-main']}>{props.title}</button>
     </div>
   );
 }

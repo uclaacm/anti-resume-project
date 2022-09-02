@@ -12,15 +12,15 @@ const Home: NextPage = () => {
         <div className={styles['header-area']}>
           <Image
             src="/acm-logo-wordmark-extended.png"
-            width={131}
-            height={60}
+            width={132}
+            height={50}
           />
-          <p>
-            <span>anti</span> resume
-          </p>
+          <div className={styles['header-text']}>
+            <span className={styles['anti']}>anti</span> resume
+          </div>
           <div className={styles['button-area']}>
-            <CustomButton />
-            <CustomButton />
+            <CustomButton title='Create'/>
+            <CustomButton title='View All'/>
           </div>
         </div>
         <p>this is the landing page</p>
