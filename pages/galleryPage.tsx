@@ -13,12 +13,14 @@ const GalleryPage = () => {
           <button className={styles.button}>{'<'} back</button>
         </Link>
         <h1 className={styles.description}>gallery</h1>
-        <h2 id={styles.year} className={styles.description}>2022</h2>
+        <h2 id={styles.year} className={styles.description}>
+          2022
+        </h2>
         <YearArray />
         <div className={styles.center}>
-        <Link href="/">
-          <button className={styles.createbutton}>Create Your Own!</button>
-        </Link>
+          <Link href="/">
+            <button className={styles.createbutton}>Create Your Own!</button>
+          </Link>
         </div>
       </div>
     </MainLayout>
