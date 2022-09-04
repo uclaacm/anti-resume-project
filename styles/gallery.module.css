@@ -1,0 +1,40 @@
+.main {
+  background-color: #f44d4d;
+}
+
+.description {
+  position: relative;
+  top: 0.5em;
+  left: 5%;
+  color: white;
+  font-size: 7em;
+}
+
+.createbutton {
+  text-transform: none;
+  color: #f44d4d;
+  background-color: white;
+  text-align: center;
+  align-self: center;
+  border-radius: 3%;
+}
+
+.button {
+  position: relative;
+  top: 1em;
+  left: 2%;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 2em;
+  text-transform: none;
+}
+
+#year {
+  font-size: 4em;
+}
+
+.center {
+  align-self: center;
+  text-align: center;
+}
