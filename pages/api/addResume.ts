@@ -3,29 +3,41 @@ import { google } from 'googleapis';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { Resume } from '../../util/types';
 
-const SHEETS_API_KEY = process.env.SHEETS_API_KEY;
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
-
-type Data = {
-  name: string;
-};
+const SERVICE_ACCOUNT = process.env.SERVICE_ACCOUNT ?? '';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>,
+  res: NextApiResponse<string>,
 ) {
+  // Get JWT Token to access sheet
+  const service_account = JSON.parse(SERVICE_ACCOUNT);
+  const jwtClient = new google.auth.JWT(
+    service_account.client_email,
+    '',
+    service_account.private_key,
+    ['https://www.googleapis.com/auth/spreadsheets'],
+  );
+  jwtClient.authorize(function (err) {
+    if (err) {
+      throw err;
+    }
+  });
+
   const sheets = google.sheets('v4');
   const body = req.body;
   const resume: Resume = body.resume;
   try {
+    // Append data to spreadsheet
     await sheets.spreadsheets.values.append({
+      auth: jwtClient,
       spreadsheetId: SPREADSHEET_ID,
-      key: SHEETS_API_KEY,
       valueInputOption: 'USER_ENTERED',
-      range: `${resume.year}!A1 :F1`,
+      insertDataOption: 'INSERT_ROWS',
+      range: `${resume.year}!A1:F1`,
       requestBody: {
         majorDimension: 'ROWS',
-        range: `${resume.year}!A1 :F1`,
+        range: `${resume.year}!A1:F1`,
         values: [
           [
             '=NOW()',
@@ -38,19 +50,10 @@ export default async function handler(
         ],
       },
     });
-    res.status(200).json({
-      name: 'successfully added',
-    });
+    res.status(200).json('Success');
   } catch (e: unknown) {
     console.error(e);
     if (e instanceof Error) res.status(500).json(e);
-    else res.status(500).json({ name: 'Unexpected Error' });
+    else res.status(500).json('Unexpected Error');
   }
 }
-// const testResume: Resume = {
-//   user: 'mattchoo',
-//   iHave: ['L1, L2, L3'],
-//   toInforms: ['LL1', 'LL2', 'LL3'],
-//   image: 'http://www.imagelink.com/',
-//   year: 2022,
-// };
