@@ -1,7 +1,7 @@
 name: Lint
 on: [push]
 
-env: 
+env:
   SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
   SHEETS_API_KEY: ${{ secrets.SHEETS_API_KEY }}
   SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
