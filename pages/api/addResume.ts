@@ -53,7 +53,7 @@ export default async function handler(
     res.status(200).json('Success');
   } catch (e: unknown) {
     console.error(e);
-    if (e instanceof Error) res.status(500).json(e);
+    if (e instanceof Error) res.status(500).json('Error: ' + e);
     else res.status(500).json('Unexpected Error');
   }
 }
