@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/Home.module.scss';
+import { SECONDS_IN_ONE_DAY } from '../util/constants';
 import getPeople from '../util/sheets';
 import { Resume } from '../util/types';
 
@@ -32,11 +33,11 @@ export default function Gallery2022Page({ people }: GalleryProps) {
 }
 
 export const getStaticProps: GetStaticProps<GalleryProps> = async () => {
-  const people = await getPeople();
+  const people = await getPeople(2022);
   return {
     props: {
       people,
     },
-    revalidate: 3600,
+    revalidate: SECONDS_IN_ONE_DAY,
   };
 };
