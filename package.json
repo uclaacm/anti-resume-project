@@ -16,7 +16,7 @@
     "@emotion/styled": "^11.10.0",
     "@mui/material": "^5.10.1",
     "dotenv": "^16.0.1",
-    "googleapis": "^105.0.0",
+    "googleapis": "^108.0.0",
     "next": "12",
     "react": "18.2.0",
     "react-dom": "18.2.0",
