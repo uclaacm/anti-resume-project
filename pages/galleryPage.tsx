@@ -18,7 +18,7 @@ const GalleryPage = () => {
         </h2>
         <YearArray />
         <div className={styles.center}>
-          <Link href="/">
+          <Link href="/createPage">
             <button className={styles.createbutton}>Create Your Own!</button>
           </Link>
         </div>
