@@ -19,8 +19,8 @@ export default function Gallery2022Page({ people }: GalleryProps) {
         <ul>
           {people.map((p, index) => (
             <li key={index}>
-              {p.user},{p.year},{p.dateModified},{people[0].toInforms[0]},
-              {people[0].iHave[0]},{people[0].image}
+              {p.user},{p.year},{p.dateModified},{people[index].toInforms[0]},
+              {people[index].iHave[0]},{people[index].image}
             </li>
           ))}
         </ul>
