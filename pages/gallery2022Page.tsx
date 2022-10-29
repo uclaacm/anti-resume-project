@@ -16,14 +16,14 @@ export default function Gallery2022Page({ people }: GalleryProps) {
     <MainLayout>
       <div className={styles.main}>
         <h1 className={styles.description}>2022 gallery is here</h1>
-        <p>
-          {people[0].user}
-          {people[0].year}
-          {people[0].dateModified}
-          {people[0].toInforms[0]}
-          {people[0].iHave[0]}
-          {people[0].image}
-        </p>
+        <ul>
+          {people.map((p, index) => (
+            <li key={index}>
+              {p.user},{p.year},{p.dateModified},{people[0].toInforms[0]},
+              {people[0].iHave[0]},{people[0].image}
+            </li>
+          ))}
+        </ul>
         <Link href="/">
           <button>Go back home</button>
         </Link>
