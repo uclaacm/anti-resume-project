@@ -22,13 +22,9 @@ export default function AboutPage() {
         <h1 className={styles.description}>
           How can I contribute my Anti-Resume?
         </h1>
-        <a
-          href="https://forms.gle/jGuKbj1pgnXWq3T77"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <Link href="/addResume">
           <button>Add your anti-resume</button>
-        </a>
+        </Link>
         <h1 className={styles.description}>Reach out!</h1>
         <Link href="/">
           <button>Go back home</button>
