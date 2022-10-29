@@ -8,7 +8,8 @@ export default function AddResume() {
   const tags = {
     name: 'Name',
     year: 'Grad year',
-    image_link: 'If you can, please submit a link (ie Google Drive) to a profile picture that will be displayed alongside your Anti-Resume',
+    image_link:
+      'If you can, please submit a link (ie Google Drive) to a profile picture that will be displayed alongside your Anti-Resume',
     rejects: `What are some companies, schools, scholarships, opportunities, etc. that you have been rejected from?
     Please create a new line (press enter) between each entry.
     
@@ -68,7 +69,10 @@ export default function AddResume() {
     Please create a new line (press enter) between each entry.`,
   };
 
-  const data = Object.values(tags).map((x) => ({ name: x, state: React.useState('') }));
+  const data = Object.values(tags).map((x) => ({
+    name: x,
+    state: React.useState(''),
+  }));
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -76,7 +80,9 @@ export default function AddResume() {
     // Data -> name, grad year, image link, rejects, not good fit, regrets, everyday Ls, proud,
     //  memories, life events, failures, advice
     // TODO: resume can contain more info
-    const n = Object.fromEntries(Object.keys(tags).map((x, index) => [x, index]));
+    const n = Object.fromEntries(
+      Object.keys(tags).map((x, index) => [x, index]),
+    );
     const get = (s: string) => data[n[s]].state[0];
 
     const userResume: Resume = {
@@ -85,7 +91,7 @@ export default function AddResume() {
       dateModified: 'big_date',
       toInforms: get('rejects'),
       iHave: get('regrets'),
-      image: get('image_link')
+      image: get('image_link'),
     };
 
     //console.log(userResume);
@@ -97,14 +103,14 @@ export default function AddResume() {
       credentials: 'same-origin', // include, *same-origin, omit
       */
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ resume: userResume })
+      body: JSON.stringify({ resume: userResume }),
     })
-    .then((response) => response.json())
-    .catch((error) => {
-      console.error(error);
-    });
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
