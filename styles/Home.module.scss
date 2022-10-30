@@ -16,11 +16,27 @@
 
 .footer {
   display: flex;
+  position: relative;
   flex: 1;
   padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px transparent;
   justify-content: center;
   align-items: center;
+}
+
+.author {
+  color: black;
+  text-align: left;
+  position: absolute;
+  font-size: 1vw;
+  left: 2.6%;
+}
+
+.inspo {
+  color: black;
+  position: absolute;
+  font-size: 1vw;
+  right: 1.6%;
 }
 
 .title a {
@@ -52,8 +68,10 @@
 }
 
 .content {
+  position: relative;
   margin: 2rem 0;
   padding: 1rem 0;
+  align-items: center;
 }
 
 .code {
