@@ -19,8 +19,20 @@ export default function AddResume() {
   // Failures
   // Advice
   const NUM_QUESTIONS = 12;
-  const [NAME, YEAR, IMAGE_LINK, REJECTIONS, NOT_GOOD_FITS, REGRETS, EVERYDAY_LS,
-    PROUD_OF, MEMORIES, LIFE_EVENTS, FAILURES, ADVICE] = Array.from(Array(NUM_QUESTIONS).keys());
+  const [
+    NAME,
+    YEAR,
+    IMAGE_LINK,
+    REJECTIONS,
+    NOT_GOOD_FITS,
+    REGRETS,
+    EVERYDAY_LS,
+    PROUD_OF,
+    MEMORIES,
+    LIFE_EVENTS,
+    FAILURES,
+    ADVICE,
+  ] = Array.from(Array(NUM_QUESTIONS).keys());
 
   // Linting lol
   let a = 0;
