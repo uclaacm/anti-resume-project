@@ -45,6 +45,11 @@
   text-align: center;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+}
+
 .description {
   margin: 2rem 0; // why do we put the 0 after this? - edmond
   line-height: 1.5;
