@@ -158,7 +158,9 @@ export default function AddResume() {
                     value={state[index][0]}
                     onChange={(event) => {
                       // Register invalid if line is too long
-                      lengthValid[index][1](event.target.value.length <= CHAR_LIMIT);
+                      lengthValid[index][1](
+                        event.target.value.length <= CHAR_LIMIT,
+                      );
                       // Register invalid date if date is too early or late
                       if (index === YEAR) {
                         const year = parseInt(event.target.value);
@@ -170,8 +172,13 @@ export default function AddResume() {
                   />
                   {/* Error messages */}
                   <div className={styles.error}>
-                    {!lengthValid[index][0] && <>{CHAR_LIMIT} character limit!<br /></>}
-                    {(index === YEAR && !yearValid) && <>Year must be valid!</>}
+                    {!lengthValid[index][0] && (
+                      <>
+                        {CHAR_LIMIT} character limit!
+                        <br />
+                      </>
+                    )}
+                    {index === YEAR && !yearValid && <>Year must be valid!</>}
                   </div>
                 </>
                 <br />
