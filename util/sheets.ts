@@ -33,12 +33,19 @@ async function getPeople(year: number): Promise<Resume[]> {
   const rows = res?.data.values ?? [];
   for (const row of rows) {
     output.push({
-      user: row[1] === undefined ? 'UNDEFINED' : row[1],
-      year: row[3] === undefined ? 'UNDEFINED' : row[3],
       dateModified: row[0] === undefined ? 'UNDEFINED' : row[0],
-      toInforms: row[2] === undefined ? 'UNDEFINED' : row[2],
-      iHave: row[5] === undefined ? 'UNDEFINED' : row[5],
-      image: row[4] === undefined ? 'UNDEFINED' : row[4],
+      name: row[1] === undefined ? 'UNDEFINED' : row[1],
+      year: row[3] === undefined ? 'UNDEFINED' : row[3],
+      imageLink: row[4] === undefined ? 'UNDEFINED' : row[4],
+      rejections: row[2] === undefined ? 'UNDEFINED' : row[2],
+      notGoodFits: '',
+      regrets: row[5] === undefined ? 'UNDEFINED' : row[5],
+      everydayLs: '',
+      proudOf: '',
+      memories: '',
+      lifeEvents: '',
+      failures: '',
+      advice: '',
     });
   }
 

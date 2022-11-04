@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.scss';
 import { Resume } from '../util/types';
 
 export default function AddResume() {
+  const CHAR_LIMIT = 500;
   // Questions
   const NAME = 0; // Name
   const YEAR = 1; // Year
@@ -18,18 +19,6 @@ export default function AddResume() {
   const LIFE_EVENTS = 9; // Life events
   const FAILURES = 10; // Failures
   const ADVICE = 11; // Advice for future self
-
-  // Linting lol
-  let a = 0;
-  a = NOT_GOOD_FITS;
-  a = EVERYDAY_LS;
-  a = PROUD_OF;
-  a = MEMORIES;
-  a = LIFE_EVENTS;
-  a = FAILURES;
-  a = ADVICE;
-  const b = a;
-  a = b;
 
   const tags = [
     'Name',
@@ -95,31 +84,47 @@ export default function AddResume() {
   ];
 
   const state = tags.map(() => React.useState(''));
+  const lengthValid = tags.map(() => React.useState(true));
+  const [yearValid, setYearValid] = React.useState(true);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     //data.forEach((x) => console.log(x.state[0]));
-    // Data -> name, grad year, image link, rejects, not good fit, regrets, everyday Ls, proud,
-    //  memories, life events, failures, advice
-    // TODO: resume can contain more info
 
+    // Check validity of inputs
+    let allValid = true;
+    for (const validElem of lengthValid) {
+      if (!validElem[0]) {
+        allValid = false;
+      }
+    }
+    if (!yearValid) {
+      allValid = false;
+    }
+
+    if (!allValid) {
+      return;
+    }
+
+    // Make resume type to send to the API
     const userResume: Resume = {
-      user: state[NAME][0],
-      year: parseInt(state[YEAR][0]),
       dateModified: 'big_date',
-      toInforms: state[REJECTIONS][0],
-      iHave: state[REGRETS][0],
-      image: state[IMAGE_LINK][0],
+      name: state[NAME][0],
+      year: parseInt(state[YEAR][0]),
+      imageLink: state[IMAGE_LINK][0],
+      rejections: state[REJECTIONS][0],
+      notGoodFits: state[NOT_GOOD_FITS][0],
+      regrets: state[REGRETS][0],
+      everydayLs: state[EVERYDAY_LS][0],
+      proudOf: state[PROUD_OF][0],
+      memories: state[MEMORIES][0],
+      lifeEvents: state[LIFE_EVENTS][0],
+      failures: state[FAILURES][0],
+      advice: state[ADVICE][0],
     };
 
-    //console.log(userResume);
     fetch('/api/addResume', {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      /*
-      mode: 'no-cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      */
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -152,9 +157,22 @@ export default function AddResume() {
                     rows={5}
                     value={state[index][0]}
                     onChange={(event) => {
+                      // Register invalid if line is too long
+                      lengthValid[index][1](event.target.value.length <= CHAR_LIMIT);
+                      // Register invalid date if date is too early or late
+                      if (index === YEAR) {
+                        const year = parseInt(event.target.value);
+                        setYearValid(year >= 2020 && year <= 2030);
+                      }
+                      // Change state
                       state[index][1](event.target.value);
                     }}
                   />
+                  {/* Error messages */}
+                  <div className={styles.error}>
+                    {!lengthValid[index][0] && <>{CHAR_LIMIT} character limit!<br /></>}
+                    {(index === YEAR && !yearValid) && <>Year must be valid!</>}
+                  </div>
                 </>
                 <br />
                 <br />
