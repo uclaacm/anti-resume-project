@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import React from 'react';
+import Link from 'next/link';
 // import './idcard.css';
 
 interface LoginProps {
@@ -17,6 +18,7 @@ interface LoginProps {
 const IDCard: React.FC<LoginProps> = ({ image, name, year, bio }) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
+      <Link href="/resumeViewPage">
       <CardActionArea>
         <div className="center">
           <Image
@@ -38,6 +40,7 @@ const IDCard: React.FC<LoginProps> = ({ image, name, year, bio }) => {
           </Typography>
         </CardContent>
       </CardActionArea>
+      </Link>
     </Card>
   );
 };

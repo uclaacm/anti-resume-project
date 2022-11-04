@@ -1,0 +1,28 @@
+
+.description {
+    position: relative;
+    top: 0.5em;
+    left: 5%;
+    color: white;
+    font-size: 7em;
+}
+
+.button {
+    position: relative;
+    top: 1em;
+    left: 2%;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 2em;
+    text-transform: none;
+}
+
+.resumeArea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 90%;
+    align-self: center;
+}
