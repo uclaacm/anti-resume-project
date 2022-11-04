@@ -5,20 +5,19 @@ import styles from '../styles/Home.module.scss';
 import { Resume } from '../util/types';
 
 export default function AddResume() {
-
   // Questions
-  const NAME = 0;           // Name
-  const YEAR = 1;           // Year
-  const IMAGE_LINK = 2;     // Image link
-  const REJECTIONS = 3;     // Rejections
-  const NOT_GOOD_FITS = 4;  // Organizations that weren't good fits
-  const REGRETS = 5;        // Regrets
-  const EVERYDAY_LS = 6;    // Everyday Ls
-  const PROUD_OF = 7;       // Things you're proud of
-  const MEMORIES = 8;       // Memories
-  const LIFE_EVENTS = 9;    // Life events
-  const FAILURES = 10;      // Failures
-  const ADVICE = 11;        // Advice for future self
+  const NAME = 0; // Name
+  const YEAR = 1; // Year
+  const IMAGE_LINK = 2; // Image link
+  const REJECTIONS = 3; // Rejections
+  const NOT_GOOD_FITS = 4; // Organizations that weren't good fits
+  const REGRETS = 5; // Regrets
+  const EVERYDAY_LS = 6; // Everyday Ls
+  const PROUD_OF = 7; // Things you're proud of
+  const MEMORIES = 8; // Memories
+  const LIFE_EVENTS = 9; // Life events
+  const FAILURES = 10; // Failures
+  const ADVICE = 11; // Advice for future self
 
   // Linting lol
   let a = 0;
