@@ -29,16 +29,16 @@ async function getPeople(year: number): Promise<Resume[]> {
     spreadsheetId: SPREADSHEET_ID,
     range: `${year}!A2:F`,
   });
-  const output = [];
+  const output: Resume[] = [];
   const rows = res?.data.values ?? [];
   for (const row of rows) {
     output.push({
-      user: row[1],
-      year: row[3],
-      dateModified: row[0],
-      toInforms: row[2].split('\n') ?? null,
-      iHave: row[5].split('\n') ?? null,
-      image: row[4],
+      user: row[1] === undefined ? 'UNDEFINED' : row[1],
+      year: row[3] === undefined ? 'UNDEFINED' : row[3],
+      dateModified: row[0] === undefined ? 'UNDEFINED' : row[0],
+      toInforms: row[2] === undefined ? 'UNDEFINED' : row[2],
+      iHave: row[5] === undefined ? 'UNDEFINED' : row[5],
+      image: row[4] === undefined ? 'UNDEFINED' : row[4],
     });
   }
 
