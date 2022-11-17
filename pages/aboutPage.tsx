@@ -8,18 +8,16 @@ export default function AboutPage() {
     <MainLayout>
       <div className={styles.main}>
         <div className={styles.content}>
-          <h1 className={styles.description}>Background</h1>
-          <p>
-            {' '}
+          <h1 className={styles.subheading}>Background</h1>
+          <p className={styles.description}>
             You are more than your resume. The goal of Anti-Resume is to provide
-            a platform that showcases the failures and accomplishments{' '}
+            a platform that showcases the failures and accomplishments of Bruins from all backgrounds. We at ACM aim to normalize discussions of
+            failure and imposter syndrome and promote a campus community where
+            everyone can thrive.
           </p>
-          {/* of Bruins from all backgrounds. We at ACM aim to normalize discussions of
-          failure and imposter syndrome and promote a campus community where
-          everyone can thrive. I GOT LINTED WHATS*/}
         </div>
 
-        <h1 className={styles.description}>
+        <h1 className={styles.subheading}>
           How can I contribute my Anti-Resume?
         </h1>
         <a
@@ -27,11 +25,11 @@ export default function AboutPage() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <button>Add your anti-resume</button>
+          <button className={styles.btn}>Add your anti-resume</button>
         </a>
-        <h1 className={styles.description}>Reach out!</h1>
+        <h1 className={styles.subheading}>Reach out!</h1>
         <Link href="/">
-          <button>Go back home</button>
+          <button className={styles.btn}>view all</button>
         </Link>
       </div>
     </MainLayout>

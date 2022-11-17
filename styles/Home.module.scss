@@ -25,7 +25,7 @@
 }
 
 .author {
-  color: black;
+  color: #ffffff;
   text-align: left;
   position: absolute;
   font-size: 1vw;
@@ -33,7 +33,7 @@
 }
 
 .inspo {
-  color: black;
+  color: #ffffff;
   position: absolute;
   font-size: 1vw;
   right: 1.6%;
@@ -57,14 +57,23 @@
 }
 
 .title,
+.subheading,
 .description {
   text-align: center;
 }
 
-.description {
+.subheading {
+  color: #ffffff;
   margin: 2rem 0; // why do we put the 0 after this? - edmond
   line-height: 1.5;
   font-size: 1.5rem;
+}
+
+.description {
+  color: #ffffff;
+  margin: 0 15rem;
+  line-height: 1.5;
+  font-size: 1rem;
 }
 
 .content {
@@ -75,7 +84,7 @@
 }
 
 .code {
-  color: white;
+  color: #ffffff;
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
@@ -101,9 +110,14 @@
   max-width: 300px;
 }
 
+.btn {
+  background-color: transparent;
+  border: 1px solid #eaeaea;
+}
 .card:hover,
 .card:focus,
-.card:active {
+.card:active,
+.btn:hover {
   color: $acm-blue;
   border-color: $acm-blue;
 }
