@@ -19,8 +19,8 @@ const Home: NextPage = () => {
             <span className={styles.anti}>anti</span> resume
           </div>
           <div className={styles.buttonarea}>
-            <CustomButton title='Create'/>
-            <CustomButton title='View All'/>
+            <CustomButton title="Create" />
+            <CustomButton title="View All" />
           </div>
         </div>
         <p>this is the landing page</p>

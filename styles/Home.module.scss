@@ -189,20 +189,20 @@
 
 // -------------
 // Landing Page
-.main-landing {
+.mainlanding {
   background-color: #f44d4d;
 
   // display
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .headerarea {
   background-color: white;
   width: 65%;
   height: 50vh + calc(1vh);
-
   // display
   display: flex;
   flex-direction: column;
@@ -216,7 +216,7 @@
   font-weight: bold;
 }
 
-.anti{
+.anti {
   color: #f44d4d;
 }
 
@@ -232,5 +232,3 @@
   width: 330px;
   height: 54px;
 }
-
-
