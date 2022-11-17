@@ -134,6 +134,32 @@
   line-height: 1.5;
 }
 
+.idcard {
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  max-width: 300px;
+}
+
+.idcard .header {
+  margin: 0;
+  border-style: solid;
+  border-color: black;
+
+  // layout
+  display: flex;
+  flex-direction: column;
+}
+
+.idcard .header .name {
+  font-size: 24px;
+}
+
 .logo {
   height: 1em;
   margin-left: 0.5rem;
@@ -160,3 +186,51 @@
     filter: invert(1);
   }
 }
+
+// -------------
+// Landing Page
+.main-landing {
+  background-color: #f44d4d;
+
+  // display
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.headerarea {
+  background-color: white;
+  width: 65%;
+  height: 50vh + calc(1vh);
+
+  // display
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.headertext {
+  font-size: 128px;
+  color: black;
+  font-weight: bold;
+}
+
+.anti{
+  color: #f44d4d;
+}
+
+.buttonarea {
+  display: flex;
+  justify-content: space-around;
+  width: 1000px;
+}
+
+.buttonmain {
+  background-color: #f44d4d;
+  color: white;
+  width: 330px;
+  height: 54px;
+}
+
+
