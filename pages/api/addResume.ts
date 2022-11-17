@@ -41,11 +41,11 @@ export default async function handler(
         values: [
           [
             '=NOW()',
-            resume.user,
-            resume.toInforms,
+            resume.name,
+            resume.rejections,
             resume.year,
-            resume.image,
-            resume.iHave,
+            resume.imageLink,
+            resume.regrets,
           ],
         ],
       },
