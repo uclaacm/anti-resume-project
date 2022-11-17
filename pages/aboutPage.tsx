@@ -11,7 +11,8 @@ export default function AboutPage() {
           <h1 className={styles.subheading}>Background</h1>
           <p className={styles.description}>
             You are more than your resume. The goal of Anti-Resume is to provide
-            a platform that showcases the failures and accomplishments of Bruins from all backgrounds. We at ACM aim to normalize discussions of
+            a platform that showcases the failures and accomplishments of Bruins
+            from all backgrounds. We at ACM aim to normalize discussions of
             failure and imposter syndrome and promote a campus community where
             everyone can thrive.
           </p>
