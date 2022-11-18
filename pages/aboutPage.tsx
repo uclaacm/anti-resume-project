@@ -1,12 +1,16 @@
+import { style } from '@mui/system';
 import Link from 'next/link';
 import React from 'react';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/Home.module.scss';
+import Image from 'next/image';
+import CustomButton from '../components/CustomButton';
+import Footer from '../components/Footer';
 
 export default function AboutPage() {
   return (
     <MainLayout>
-      <div className={styles.main}>
+      <>
         <div className={styles.content}>
           <h1 className={styles.subheading}>Background</h1>
           <p className={styles.description}>
@@ -16,19 +20,19 @@ export default function AboutPage() {
             failure and imposter syndrome and promote a campus community where
             everyone can thrive.
           </p>
+          <h1 className={styles.subheading}>
+            How can I contribute my Anti-Resume?
+          </h1>
+          <Link href="/addResume">
+            <button className={styles.btn}>Add your anti-resume</button>
+          </Link>
+          <h1 className={styles.subheading}>Reach out!</h1>
+          <Link href="/">
+            <button className={styles.btn}>view all</button>
+          </Link>
         </div>
-
-        <h1 className={styles.subheading}>
-          How can I contribute my Anti-Resume?
-        </h1>
-        <Link href="/addResume">
-          <button className={styles.btn}>Add your anti-resume</button>
-        </Link>
-        <h1 className={styles.subheading}>Reach out!</h1>
-        <Link href="/">
-          <button className={styles.btn}>view all</button>
-        </Link>
-      </div>
+        <Footer />
+      </>
     </MainLayout>
   );
 }
