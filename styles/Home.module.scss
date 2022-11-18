@@ -4,23 +4,32 @@
   padding: 0 2rem;
 }
 
-.main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+  padding: 1rem 0;
+  border-top: 1px transparent;
+}
+
+.footercontainer {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
-.footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
+.author {
+  color: #fff;
+  text-align: left;
+  font-size: 1vw;
+  margin: auto auto auto 25px;
+}
+
+.inspo {
+  color: #fff;
+  position: absolute;
+  font-size: 1vw;
+  right: 1.6%;
 }
 
 .title a {
@@ -41,6 +50,7 @@
 }
 
 .title,
+.subheading,
 .description {
   text-align: center;
 }
@@ -54,19 +64,21 @@
   color: red;
 }
 
-.description {
-  margin: 2rem 0; // why do we put the 0 after this? - edmond
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
+// .description {
+//   margin: 2rem 0; // why do we put the 0 after this? - edmond
+//   line-height: 1.5;
+//   font-size: 1.5rem;
+// }
 
-.content {
-  margin: 2rem 0;
-  padding: 1rem 0;
+.description {
+  color: #fff;
+  margin: 0 15rem;
+  line-height: 1.5;
+  font-size: 1rem;
 }
 
 .code {
-  color: white;
+  color: #fff;
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
@@ -92,9 +104,15 @@
   max-width: 300px;
 }
 
+.btn {
+  background-color: transparent;
+  border: 1px solid #eaeaea;
+}
+
 .card:hover,
 .card:focus,
-.card:active {
+.card:active,
+.btn:hover {
   color: $acm-blue;
   border-color: $acm-blue;
 }
@@ -108,6 +126,32 @@
   margin: 0;
   font-size: 1.25rem;
   line-height: 1.5;
+}
+
+.idcard {
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  max-width: 300px;
+}
+
+.idcard .header {
+  margin: 0;
+  border-style: solid;
+  border-color: black;
+
+  // layout
+  display: flex;
+  flex-direction: column;
+}
+
+.idcard .header .name {
+  font-size: 24px;
 }
 
 .logo {
@@ -135,4 +179,77 @@
   .logo img {
     filter: invert(1);
   }
+}
+
+// -------------
+// Landing Page
+
+.mainlanding {
+  background-color: #f44d4d;
+  // min-height: 100vh;
+  // display
+  display: flex;
+  padding: 4rem 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerarea {
+  background-color: white;
+  width: 65%;
+  height: 50vh + calc(1vh);
+
+  // display
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.headertext {
+  font-size: 128px;
+  color: black;
+  font-weight: bold;
+}
+
+.anti {
+  color: #f44d4d;
+}
+
+.buttonarea {
+  display: flex;
+  justify-content: space-around;
+  width: 1000px;
+}
+
+.buttonmain {
+  background-color: #f44d4d;
+  color: white;
+  width: 330px;
+  height: 54px;
+}
+
+.content {
+  // background-color: black;
+  position: relative;
+  margin: 2rem 0;
+  padding: 10rem 0;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.content .subheading {
+  margin: 2rem 0;
+  color: white;
+  // background: white;
+}
+
+.content .btn {
+  // padding: 10px 0;
+  margin: 10px 0;
 }

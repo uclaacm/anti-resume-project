@@ -60,11 +60,32 @@ Instructions for installing NVM on macOS and Linux (including WSL) are [here](ht
 
 At this point you can run `nvm install`. Assuming you've already `cd`ed into the correct directory as mentioned earlier, this will download the LTS (Long-Term Support) version of Node.js for you. Then, run `nvm use` to make sure you've switched to the right version; if it tells you `Now using Node v16.13.2` or something similar, you're good to go!
 
+What happened was that a previous version of node was not completely wiped and had conflict with the recent node.
+Tried to wipe npm, nvm and node by
+`rm -rf ~/.npm`
+`rm -rf ~/.nvm`
+
+reinstalling node and npm using node.js installer
+
+reinstall nvm using the script
+`touch ~/.zshrc`
+`curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash`
+
+check npm, nvm and node is working:
+`nvm -v`
+`npm -v`
+`node -v`
+
+if it says `zsh: command not found for nvm`, create another terminal in vscode and repeat the steps.
+
+To start the server:
+RUN `npm run dev`
+
 ### Windows
 
 If you're on Windows, you can use NVM for Windows, a separate version manager whose installation instructions can be found [here](https://github.com/coreybutler/nvm-windows#installation--upgrades). Once you've done that, you can run `nvm install 16.13.2` to install the LTS version of Node.js, and `nvm use 16.13.2` to switch to it.
 
-If you don't have yarn installed...
+If you don't have yarn instal$led...
 
 ```
 npm install --global yarn
@@ -84,12 +105,13 @@ To start our app, you just need to run `yarn start`!
 
 ```
 yarn start
-```
 
 And to build our project for production (with CRA and Webpack's bundling with all that goodness),
 
 ```
+
 yarn run build
+
 ```
 
 ## Contribution Workflow
@@ -112,7 +134,9 @@ Here's a quick guide on how to get started.
 By running `yarn lint-fix` we can use the linter that we set-up to format our code the way that passes our style checks! Before you commit your changes and submit a pull request, make sure to run
 
 ```
+
 yarn lint-fix
+
 ```
 
 With Husky, we run `yarn lint-staged` automatically before you commit! If you want to lint before commiting, you can run `yarn lint-fix`.
@@ -130,13 +154,17 @@ There are actually 2 main ways to disable lint. Disabling the "rule" entirely, o
 Depending on whether it's from `stylelint` or `eslint`, you can go to `stylelintrc.json` and add to `"rules"
 
 ```
+
 <rule-name>: null
+
 ```
 
 or `eslintrc.json` and add
 
 ```
+
 '<rule-name>': 'off',
+
 ```
 
 #### Disabling a rule for a single line or file
@@ -148,13 +176,17 @@ Or the stylelint docs for this: https://stylelint.io/user-guide/ignore-code/
 It's pretty simple though, it'd look something like
 
 ```
-/* eslint-disable <rule-name> */
+
+/_ eslint-disable <rule-name> _/
+
 ```
 
 or
 
 ```
+
 // eslint-disable-next-line
+
 ```
 
 The process for `stylelint` is very similar.
@@ -172,6 +204,7 @@ Our webpack set-up currently accepts asset files with the following extensions: 
 Code for it can be seen in line 22 `webpack.dev.js` and in `webpack.prod.js`
 
 ```
+
       {
         test: /\.(png|svg|jpe?g|gif|mp3|ttf)$/i, // we use regex to test different file types
         use: {
@@ -181,6 +214,7 @@ Code for it can be seen in line 22 `webpack.dev.js` and in `webpack.prod.js`
           },
         },
       },
+
 ```
 
 If you want to add more assets like `.pdf`, `.wav`, `.mp4`, <YOUR_ASSET_TYPE> etc.
@@ -192,11 +226,13 @@ If you want to add more assets like `.pdf`, `.wav`, `.mp4`, <YOUR_ASSET_TYPE> et
 - [ ] (If typing is needed) add in:
 
 ```
-/* eslint-disable @typescript-eslint/no-explicit-any */
-declare module '*.<YOUR_ASSET_TYPE>' {
-  const value: <YOUR_ASSET_TYPE-TYPE>;
-  export default value;
+
+/_ eslint-disable @typescript-eslint/no-explicit-any _/
+declare module '\*.<YOUR_ASSET_TYPE>' {
+const value: <YOUR_ASSET_TYPE-TYPE>;
+export default value;
 }
+
 ```
 
 ### How can I tell if my asset is actually being served?
@@ -210,3 +246,4 @@ Take a look at `<YOUR_PROJECT_PATH>/asset-manifest.json`. [Like this!](https://t
 ## Licensing & Attribution
 
 This project and its code are licensed under the MIT License. You're free to use them however you wish, though we'd love to hear from you if you found this useful!
+```

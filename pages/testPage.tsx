@@ -12,7 +12,7 @@ export default function Test() {
           navbar!
         </h1>
         <Link href="/">
-          <button>Go back home</button>
+          <button>Goto home</button>
         </Link>
       </div>
     </MainLayout>
