@@ -10,7 +10,6 @@ export default function Footer() {
           Inspired by The Anti-Resume Project at University of Pennsylvania
         </span>
       </div>
-
     </footer>
   );
 }
