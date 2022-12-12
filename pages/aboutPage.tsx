@@ -1,11 +1,8 @@
-import { style } from '@mui/system';
 import Link from 'next/link';
 import React from 'react';
+import Footer from '../components/Footer';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/Home.module.scss';
-import Image from 'next/image';
-import CustomButton from '../components/CustomButton';
-import Footer from '../components/Footer';
 
 export default function AboutPage() {
   return (

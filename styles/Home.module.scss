@@ -7,7 +7,7 @@
 .footer {
   position: absolute;
   width: 100%;
-  bottom: 0px;
+  bottom: 0;
   padding: 1rem 0;
   border-top: 1px transparent;
 }
@@ -186,6 +186,7 @@
 
 .mainlanding {
   background-color: #f44d4d;
+
   // min-height: 100vh;
   // display
   display: flex;
@@ -246,6 +247,7 @@
 .content .subheading {
   margin: 2rem 0;
   color: white;
+
   // background: white;
 }
 
