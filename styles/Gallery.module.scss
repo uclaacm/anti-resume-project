@@ -1,0 +1,21 @@
+.title {
+  text-align: left;
+  font-weight: 700;
+  font-size: 60px;
+  padding: 10px 50px;
+  align-items: center;
+  justify-items: center;
+}
+
+.subtitle {
+  font-weight: 700;
+  padding: 10px 50px;
+  font-size: 40px;
+  margin: 10px 0;
+}
+
+.gallery {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
