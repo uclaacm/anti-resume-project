@@ -3,8 +3,20 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import CustomButton from '../components/CustomButton';
 import Footer from '../components/Footer';
+import IDCard from '../components/idcard';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/Home.module.scss';
+
+const arr = Array.from({length: 3}).fill(6);
+function Gallery() {
+  return (
+    <div className={styles.gallery}>
+      {arr.map((item, index) => (
+        <IDCard key={index} name="RJ Maokhamphiou" year={2022} />
+      ))}
+    </div>
+  );
+}
 
 const Home: NextPage = () => {
   return (
@@ -26,6 +38,7 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
+        <Gallery />
         <Footer />
       </>
     </MainLayout>

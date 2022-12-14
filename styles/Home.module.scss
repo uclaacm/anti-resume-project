@@ -1,11 +1,12 @@
 @import "global_variables";
+@import "Gallery.module";
 
 .container {
   padding: 0 2rem;
 }
 
 .footer {
-  position: absolute;
+  position: relative;
   width: 100%;
   bottom: 0;
   padding: 1rem 0;
