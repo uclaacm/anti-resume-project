@@ -1,19 +1,15 @@
-import Link from 'next/link';
 import React from 'react';
+import IDCard from '../components/idcard';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/Home.module.scss';
 
 export default function Test() {
+  //TODO: add regret count
+  //TODO: add rejection count
   return (
     <MainLayout>
       <div className={styles.main}>
-        <h1 className={styles.description}>
-          Here&apos;s yet another test page you can navigate to using the
-          navbar!
-        </h1>
-        <Link href="/">
-          <button>Goto home</button>
-        </Link>
+        <IDCard name="Harvey Zhao" year={2022} />
       </div>
     </MainLayout>
   );
