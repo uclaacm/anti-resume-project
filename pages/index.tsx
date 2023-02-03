@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 // import ACMLogo from '../images/acm-logo.png';
 import Image from 'next/image';
-import LinkButton from '../components/LinkButton';
 import Footer from '../components/Footer';
+import LinkButton from '../components/LinkButton';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/Home.module.scss';
 
