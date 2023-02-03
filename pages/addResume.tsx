@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { Fragment } from 'react';
 import MainLayout from '../components/MainLayout';
-import styles from '../styles/Home.module.scss';
+import styles from '../styles/add_resume.module.scss';
 import { Resume } from '../util/types';
 
 export default function AddResume() {
@@ -85,7 +85,8 @@ export default function AddResume() {
 
   const state = tags.map(() => React.useState(''));
   const lengthValid = tags.map(() => React.useState(true));
-  const [yearValid, setYearValid] = React.useState(true);
+  const [yearValid, setYearValid] = React.useState(false);
+  const [nameValid, setNameValid] = React.useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -161,6 +162,10 @@ export default function AddResume() {
                       lengthValid[index][1](
                         event.target.value.length <= CHAR_LIMIT,
                       );
+                      // Register invalid name if name is blank
+                      if (index === NAME) {
+                        setNameValid(event.target.value.length > 0);
+                      }
                       // Register invalid date if date is too early or late
                       if (index === YEAR) {
                         const year = parseInt(event.target.value);
@@ -178,6 +183,7 @@ export default function AddResume() {
                         <br />
                       </>
                     )}
+                    {index === NAME && !nameValid && <>Name cannot be blank!</>}
                     {index === YEAR && !yearValid && <>Year must be valid!</>}
                   </div>
                 </>
