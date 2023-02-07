@@ -155,6 +155,7 @@ export default function AddResume() {
                   ))}
                   {/* Input area */}
                   <textarea
+                    className={styles.textenter}
                     rows={5}
                     value={state[index][0]}
                     onChange={(event) => {
