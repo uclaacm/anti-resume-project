@@ -155,7 +155,9 @@ export default function AddResume() {
                       // Register invalid date if date is too early or late
                       if (index === questions.YEAR) {
                         const year = parseInt(event.target.value);
-                        setYearValid(year >= MIN_GRAD_YEAR && year <= MAX_GRAD_YEAR);
+                        setYearValid(
+                          year >= MIN_GRAD_YEAR && year <= MAX_GRAD_YEAR,
+                        );
                       }
                       // Change state
                       state[index][1](event.target.value);
