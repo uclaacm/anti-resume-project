@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import { google } from 'googleapis';
-import { Resume } from './types';
 import { questions } from './constants';
+import { Resume } from './types';
 
 dotenv.config();
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
@@ -34,8 +34,8 @@ async function getPeople(year: number): Promise<Resume[]> {
   const rows = res?.data.values ?? [];
   const checkUndefined = (value: any) => {
     return value === undefined ? '' : value;
-  }
-  for (let row of rows) {
+  };
+  for (const row of rows) {
     let dateModified = '';
     if (row[0] !== undefined) {
       dateModified = row.shift();

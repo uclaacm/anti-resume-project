@@ -40,9 +40,9 @@ export default async function handler(
               sourceSheetId: TEMPLATE_SHEET_ID,
               insertSheetIndex: 1,
               newSheetName: `${resume.year}`,
-            }
+            },
           },
-        ]
+        ],
       },
     });
     // Append data to spreadsheet

@@ -2,8 +2,8 @@ import Link from 'next/link';
 import React, { Fragment } from 'react';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/add_resume.module.scss';
-import { Resume } from '../util/types';
 import { questions } from '../util/constants';
+import { Resume } from '../util/types';
 
 export default function AddResume() {
   const CHAR_LIMIT = 500;
@@ -167,8 +167,12 @@ export default function AddResume() {
                         <br />
                       </>
                     )}
-                    {index === questions.NAME && !nameValid && <>Name cannot be blank!</>}
-                    {index === questions.YEAR && !yearValid && <>Year must be valid!</>}
+                    {index === questions.NAME && !nameValid && (
+                      <>Name cannot be blank!</>
+                    )}
+                    {index === questions.YEAR && !yearValid && (
+                      <>Year must be valid!</>
+                    )}
                   </div>
                 </>
                 <br />
