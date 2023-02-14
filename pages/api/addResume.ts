@@ -5,6 +5,7 @@ import { Resume } from '../../util/types';
 
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 const SERVICE_ACCOUNT = process.env.SERVICE_ACCOUNT ?? '';
+const TEMPLATE_SHEET_ID = 417104678;
 
 export default async function handler(
   req: NextApiRequest,
@@ -28,16 +29,32 @@ export default async function handler(
   const body = req.body;
   const resume: Resume = body.resume;
   try {
+    // Create sheet if it doesn't exist
+    await sheets.spreadsheets.batchUpdate({
+      auth: jwtClient,
+      spreadsheetId: SPREADSHEET_ID,
+      requestBody: {
+        requests: [
+          {
+            duplicateSheet: {
+              sourceSheetId: TEMPLATE_SHEET_ID,
+              insertSheetIndex: 1,
+              newSheetName: `${resume.year}`,
+            },
+          },
+        ],
+      },
+    });
     // Append data to spreadsheet
     await sheets.spreadsheets.values.append({
       auth: jwtClient,
       spreadsheetId: SPREADSHEET_ID,
       valueInputOption: 'USER_ENTERED',
       insertDataOption: 'INSERT_ROWS',
-      range: 'Resumes!A1:F1',
+      range: `${resume.year}!A1:M1`,
       requestBody: {
         majorDimension: 'ROWS',
-        range: 'Resumes!A1:F1',
+        range: `${resume.year}!A1:M1`,
         values: [
           [
             '=NOW()',

@@ -2,23 +2,13 @@ import Link from 'next/link';
 import React, { Fragment } from 'react';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/add_resume.module.scss';
+import { questions } from '../util/constants';
 import { Resume } from '../util/types';
 
 export default function AddResume() {
   const CHAR_LIMIT = 500;
-  // Questions
-  const NAME = 0; // Name
-  const YEAR = 1; // Year
-  const IMAGE_LINK = 2; // Image link
-  const REJECTIONS = 3; // Rejections
-  const NOT_GOOD_FITS = 4; // Organizations that weren't good fits
-  const REGRETS = 5; // Regrets
-  const EVERYDAY_LS = 6; // Everyday Ls
-  const PROUD_OF = 7; // Things you're proud of
-  const MEMORIES = 8; // Memories
-  const LIFE_EVENTS = 9; // Life events
-  const FAILURES = 10; // Failures
-  const ADVICE = 11; // Advice for future self
+  const MIN_GRAD_YEAR = 2000;
+  const MAX_GRAD_YEAR = 2050;
 
   const tags = [
     'Name',
@@ -93,35 +83,30 @@ export default function AddResume() {
     //data.forEach((x) => console.log(x.state[0]));
 
     // Check validity of inputs
-    let allValid = true;
     for (const validElem of lengthValid) {
       if (!validElem[0]) {
-        allValid = false;
+        return;
       }
     }
     if (!yearValid) {
-      allValid = false;
-    }
-
-    if (!allValid) {
       return;
     }
 
     // Make resume type to send to the API
     const userResume: Resume = {
       dateModified: 'big_date',
-      name: state[NAME][0],
-      year: parseInt(state[YEAR][0]),
-      imageLink: state[IMAGE_LINK][0],
-      rejections: state[REJECTIONS][0],
-      notGoodFits: state[NOT_GOOD_FITS][0],
-      regrets: state[REGRETS][0],
-      everydayLs: state[EVERYDAY_LS][0],
-      proudOf: state[PROUD_OF][0],
-      memories: state[MEMORIES][0],
-      lifeEvents: state[LIFE_EVENTS][0],
-      failures: state[FAILURES][0],
-      advice: state[ADVICE][0],
+      name: state[questions.NAME][0],
+      year: parseInt(state[questions.YEAR][0]),
+      imageLink: state[questions.IMAGE_LINK][0],
+      rejections: state[questions.REJECTIONS][0],
+      notGoodFits: state[questions.NOT_GOOD_FITS][0],
+      regrets: state[questions.REGRETS][0],
+      everydayLs: state[questions.EVERYDAY_LS][0],
+      proudOf: state[questions.PROUD_OF][0],
+      memories: state[questions.MEMORIES][0],
+      lifeEvents: state[questions.LIFE_EVENTS][0],
+      failures: state[questions.FAILURES][0],
+      advice: state[questions.ADVICE][0],
     };
 
     fetch('/api/addResume', {
@@ -164,13 +149,15 @@ export default function AddResume() {
                         event.target.value.length <= CHAR_LIMIT,
                       );
                       // Register invalid name if name is blank
-                      if (index === NAME) {
+                      if (index === questions.NAME) {
                         setNameValid(event.target.value.length > 0);
                       }
                       // Register invalid date if date is too early or late
-                      if (index === YEAR) {
+                      if (index === questions.YEAR) {
                         const year = parseInt(event.target.value);
-                        setYearValid(year >= 2020 && year <= 2030);
+                        setYearValid(
+                          year >= MIN_GRAD_YEAR && year <= MAX_GRAD_YEAR,
+                        );
                       }
                       // Change state
                       state[index][1](event.target.value);
@@ -184,8 +171,12 @@ export default function AddResume() {
                         <br />
                       </>
                     )}
-                    {index === NAME && !nameValid && <>Name cannot be blank!</>}
-                    {index === YEAR && !yearValid && <>Year must be valid!</>}
+                    {index === questions.NAME && !nameValid && (
+                      <>Name cannot be blank!</>
+                    )}
+                    {index === questions.YEAR && !yearValid && (
+                      <>Year must be valid!</>
+                    )}
                   </div>
                 </>
                 <br />
