@@ -1,6 +1,7 @@
 import * as dotenv from 'dotenv';
 import { google } from 'googleapis';
 import { Resume } from './types';
+import { questions } from './constants';
 
 dotenv.config();
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
@@ -27,26 +28,34 @@ async function getPeople(year: number): Promise<Resume[]> {
   const res = await sheets.spreadsheets.values.get({
     auth: jwtClient,
     spreadsheetId: SPREADSHEET_ID,
-    range: `${year}!A2:F`,
+    range: `${year}!A2:M`,
   });
   const output: Resume[] = [];
   const rows = res?.data.values ?? [];
-  for (const row of rows) {
-    output.push({
-      dateModified: row[0] === undefined ? 'UNDEFINED' : row[0],
-      name: row[1] === undefined ? 'UNDEFINED' : row[1],
-      year: row[3] === undefined ? 'UNDEFINED' : row[3],
-      imageLink: row[4] === undefined ? 'UNDEFINED' : row[4],
-      rejections: row[2] === undefined ? 'UNDEFINED' : row[2],
-      notGoodFits: '',
-      regrets: row[5] === undefined ? 'UNDEFINED' : row[5],
-      everydayLs: '',
-      proudOf: '',
-      memories: '',
-      lifeEvents: '',
-      failures: '',
-      advice: '',
-    });
+  const checkUndefined = (value: any) => {
+    return value === undefined ? '' : value;
+  }
+  for (let row of rows) {
+    let dateModified = '';
+    if (row[0] !== undefined) {
+      dateModified = row.shift();
+    }
+    const resume: Resume = {
+      dateModified: dateModified,
+      name: checkUndefined(row[questions.NAME]),
+      year: checkUndefined(row[questions.YEAR]),
+      imageLink: checkUndefined(row[questions.IMAGE_LINK]),
+      rejections: checkUndefined(row[questions.REJECTIONS]),
+      notGoodFits: checkUndefined(row[questions.NOT_GOOD_FITS]),
+      regrets: checkUndefined(row[questions.REGRETS]),
+      everydayLs: checkUndefined(row[questions.EVERYDAY_LS]),
+      proudOf: checkUndefined(row[questions.PROUD_OF]),
+      memories: checkUndefined(row[questions.MEMORIES]),
+      lifeEvents: checkUndefined(row[questions.LIFE_EVENTS]),
+      failures: checkUndefined(row[questions.FAILURES]),
+      advice: checkUndefined(row[questions.ADVICE]),
+    };
+    output.push(resume);
   }
 
   return output;
