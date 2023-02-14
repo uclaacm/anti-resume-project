@@ -7,6 +7,8 @@ import { Resume } from '../util/types';
 
 export default function AddResume() {
   const CHAR_LIMIT = 500;
+  const MIN_GRAD_YEAR = 2000;
+  const MAX_GRAD_YEAR = 2050;
 
   const tags = [
     'Name',
@@ -153,7 +155,7 @@ export default function AddResume() {
                       // Register invalid date if date is too early or late
                       if (index === questions.YEAR) {
                         const year = parseInt(event.target.value);
-                        setYearValid(year >= 2020 && year <= 2030);
+                        setYearValid(year >= MIN_GRAD_YEAR && year <= MAX_GRAD_YEAR);
                       }
                       // Change state
                       state[index][1](event.target.value);
