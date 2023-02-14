@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-// import ACMLogo from '../images/acm-logo.png';
 import Image from 'next/image';
 import CustomButton from '../components/CustomButton';
 import Footer from '../components/Footer';
@@ -7,7 +6,7 @@ import IDCard from '../components/idcard';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/Home.module.scss';
 
-const arr = Array.from({length: 3}).fill(6);
+const arr = Array.from({ length: 3 }).fill(6);
 function Gallery() {
   return (
     <div className={styles.gallery}>

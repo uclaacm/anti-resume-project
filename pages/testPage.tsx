@@ -3,7 +3,7 @@ import IDCard from '../components/idcard';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/Gallery.module.scss';
 
-const arr = Array.from({length: 6}).fill(6);
+const arr = Array.from({ length: 6 }).fill(6);
 function Gallery() {
   return (
     <div className={styles.gallery}>

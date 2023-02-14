@@ -5,8 +5,7 @@ import styles from '../styles/Home.module.scss';
 export default function OtherPage() {
   return (
     <MainLayout>
-      <div className={styles.main}>
-      </div>
+      <div className={styles.main}></div>
     </MainLayout>
   );
 }

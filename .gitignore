@@ -2,6 +2,7 @@
 
 # private files
 .env
+.env local
 
 # dependencies
 /node_modules
