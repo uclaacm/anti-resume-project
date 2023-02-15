@@ -29,22 +29,34 @@ export default async function handler(
   const body = req.body;
   const resume: Resume = body.resume;
   try {
-    // Create sheet if it doesn't exist
-    await sheets.spreadsheets.batchUpdate({
+    const mySpreadsheet = await sheets.spreadsheets.get({
       auth: jwtClient,
       spreadsheetId: SPREADSHEET_ID,
-      requestBody: {
-        requests: [
-          {
-            duplicateSheet: {
-              sourceSheetId: TEMPLATE_SHEET_ID,
-              insertSheetIndex: 1,
-              newSheetName: `${resume.year}`,
-            },
-          },
-        ],
-      },
     });
+    // Create sheet if it doesn't exist
+    let createSheet = true;
+    for (const mySheet of mySpreadsheet.data.sheets!) {
+      if (mySheet.properties?.title === `${resume.year}`) {
+        createSheet = false;
+      }
+    }
+    if (createSheet) {
+      await sheets.spreadsheets.batchUpdate({
+        auth: jwtClient,
+        spreadsheetId: SPREADSHEET_ID,
+        requestBody: {
+          requests: [
+            {
+              duplicateSheet: {
+                sourceSheetId: TEMPLATE_SHEET_ID,
+                insertSheetIndex: 1,
+                newSheetName: `${resume.year}`,
+              },
+            },
+          ],
+        },
+      });
+    }
     // Append data to spreadsheet
     await sheets.spreadsheets.values.append({
       auth: jwtClient,
@@ -57,7 +69,7 @@ export default async function handler(
         range: `${resume.year}!A1:M1`,
         values: [
           [
-            '=NOW()',
+            Date.now().toString(),
             resume.name,
             resume.year,
             resume.imageLink,
