@@ -5,6 +5,7 @@ import LinkButton from '../components/LinkButton';
 import IDCard from '../components/idcard';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/Home.module.scss';
+import Link from 'next/link';
 
 const arr = Array.from({ length: 3 }).fill(6);
 function Gallery() {
@@ -32,8 +33,12 @@ const Home: NextPage = () => {
               <span className={styles.anti}>anti</span> resume
             </div>
             <div className={styles.buttonarea}>
-              <LinkButton title="Create" href="/addResume" />
-              <LinkButton title="View All" href="gallery2022Page" />
+              <Link className={styles.button} href="/addResume">
+                <button className={styles.buttonmain}>Create</button>
+              </Link>
+              <Link className={styles.button} href="/gallery2022Page">
+                <button className={styles.buttonmain}>View All</button>
+              </Link>
             </div>
           </div>
         </div>
