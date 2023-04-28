@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
-import CustomButton from '../components/CustomButton';
 import Footer from '../components/Footer';
 import IDCard from '../components/idcard';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/Home.module.scss';
+import Link from 'next/link';
 
 const arr = Array.from({ length: 3 }).fill(6);
 function Gallery() {
@@ -32,8 +32,12 @@ const Home: NextPage = () => {
               <span className={styles.anti}>anti</span> resume
             </div>
             <div className={styles.buttonarea}>
-              <CustomButton title="Create" />
-              <CustomButton title="View All" />
+              <Link className={styles.button} href="/addResume">
+                <button className={styles.buttonmain}>Create</button>
+              </Link>
+              <Link className={styles.button} href="/gallery2022Page">
+                <button className={styles.buttonmain}>View All</button>
+              </Link>
             </div>
           </div>
         </div>
