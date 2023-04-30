@@ -1,10 +1,10 @@
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React, { useState, useEffect, Fragment } from 'react';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/add_resume.module.scss';
 import { questions } from '../util/constants';
 import { Resume } from '../util/types';
-import { useSession } from 'next-auth/react';
 
 export default function AddResume() {
   const CHAR_LIMIT = 500;
@@ -142,11 +142,7 @@ export default function AddResume() {
 
   // If no session exists, display access denied message
   if (!session) {
-    return (
-      <>
-        Access denied
-      </>
-    );
+    return <>Access denied</>;
   }
 
   return (

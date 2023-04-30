@@ -41,6 +41,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
+        devDependencies: false,
         optionalDependencies: false, // Disallow importing optional dependencies (those shouldn't be in use in the project)
         peerDependencies: false, // Disallow importing peer dependencies (that aren't also direct dependencies)
       },
