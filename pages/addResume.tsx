@@ -1,9 +1,10 @@
 import Link from 'next/link';
-import React, { Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/add_resume.module.scss';
 import { questions } from '../util/constants';
 import { Resume } from '../util/types';
+import { useSession } from 'next-auth/react';
 
 export default function AddResume() {
   const CHAR_LIMIT = 500;
@@ -73,10 +74,10 @@ export default function AddResume() {
     Please create a new line (press enter) between each entry.`,
   ];
 
-  const state = tags.map(() => React.useState(''));
-  const lengthValid = tags.map(() => React.useState(true));
-  const [yearValid, setYearValid] = React.useState(false);
-  const [nameValid, setNameValid] = React.useState(false);
+  const state = tags.map(() => useState(''));
+  const lengthValid = tags.map(() => useState(true));
+  const [yearValid, setYearValid] = useState(false);
+  const [nameValid, setNameValid] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -121,6 +122,32 @@ export default function AddResume() {
         console.error(error);
       });
   };
+
+  const { data: session } = useSession();
+  const [, setContent] = useState();
+
+  // Fetch content from protected route
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('/api/examples/protected');
+      const json = await res.json();
+      if (json.content) {
+        setContent(json.content);
+      }
+    };
+    fetchData().catch((error) => {
+      console.error(error);
+    });
+  }, [session]);
+
+  // If no session exists, display access denied message
+  if (!session) {
+    return (
+      <>
+        Access denied
+      </>
+    );
+  }
 
   return (
     <MainLayout>
