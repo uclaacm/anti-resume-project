@@ -1,8 +1,6 @@
 import { useSession } from 'next-auth/react';
-import Link from 'next/link';
 import React, { useState, useEffect, Fragment } from 'react';
 import MainLayout from '../components/MainLayout';
-import styles from '../styles/add_resume.module.scss';
 import { questions } from '../util/constants';
 import { Resume } from '../util/types';
 
@@ -129,7 +127,7 @@ export default function AddResume() {
   // Fetch content from protected route
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch('/api/examples/protected');
+      const res = await fetch('/api/protected');
       const json = await res.json();
       if (json.content) {
         setContent(json.content);
@@ -144,19 +142,21 @@ export default function AddResume() {
   if (!session) {
     return (
       <MainLayout>
-        <div>Sign in to make an anti-resume!</div>
+        <div className="flex flex-col items-center">
+          <p className="text-3xl">Sign in to make an anti-resume!</p>
+        </div>
       </MainLayout>
     );
   }
 
   return (
     <MainLayout>
-      <div className={styles.main}>
-        <div className={styles.content}>
-          <h1 className="text-3xl">Add your resume!</h1>
+      <div className="max-w-3xl mx-auto">
+        <div className="flex flex-col items-center">
+          <p className="text-3xl">Add your resume!</p>
           <form onSubmit={handleSubmit}>
             {tags.map((field, index) => (
-              <label key={index}>
+              <label key={index} className="inline-block w-full mb-6">
                 <>
                   {/* Text of the input */}
                   {field.split('\n').map((item, innerIndex) => (
@@ -168,7 +168,7 @@ export default function AddResume() {
                   {/* Input area */}
                   <textarea
                     rows={5}
-                    className="w-full"
+                    className="w-full rounded"
                     value={state[index][0]}
                     onChange={(event) => {
                       // Register invalid if line is too long
@@ -191,23 +191,18 @@ export default function AddResume() {
                     }}
                   />
                   {/* Error messages */}
-                  <div className={styles.error}>
+                  <div>
                     {!lengthValid[index][0] && (
-                      <>
-                        {CHAR_LIMIT} character limit!
-                        <br />
-                      </>
+                      <p>{CHAR_LIMIT} character limit!</p>
                     )}
                     {index === questions.NAME && !nameValid && (
-                      <>Name cannot be blank!</>
+                      <p>Name cannot be blank!</p>
                     )}
                     {index === questions.YEAR && !yearValid && (
-                      <>Year must be valid!</>
+                      <p>Year must be valid!</p>
                     )}
                   </div>
                 </>
-                <br />
-                <br />
               </label>
             ))}
             <div className="flex justify-center">
@@ -219,15 +214,7 @@ export default function AddResume() {
               </button>
             </div>
           </form>
-        </div>
-
-        <div className="flex flex-col items-center">
-          <p>Reach out!</p>
-          <Link href="/">
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Go back home
-            </button>
-          </Link>
+          <p className="mt-3">Reach out!</p>
         </div>
       </div>
     </MainLayout>

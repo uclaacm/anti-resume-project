@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Footer from '../components/Footer';
-import LinkButton from '../components/LinkButton';
+//import LinkButton from '../components/LinkButton';
 import IDCard from '../components/idcard';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/Home.module.scss';
