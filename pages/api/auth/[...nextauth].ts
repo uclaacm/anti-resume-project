@@ -56,6 +56,13 @@ export const authOptions: NextAuthOptions = {
     colorScheme: 'light',
   },
   callbacks: {
+    async signIn({ account, profile }) {
+      // Has to be g.ucla.edu account
+      if (account.provider === 'google') {
+        return profile.email_verified && profile.email.endsWith('@g.ucla.edu');
+      }
+      return false;
+    },
     async jwt({ token }) {
       token.userRole = 'admin';
       return token;

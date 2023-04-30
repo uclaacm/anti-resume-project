@@ -142,14 +142,18 @@ export default function AddResume() {
 
   // If no session exists, display access denied message
   if (!session) {
-    return <>Access denied</>;
+    return (
+      <MainLayout>
+        <div>Sign in to make an anti-resume!</div>
+      </MainLayout>
+    );
   }
 
   return (
     <MainLayout>
       <div className={styles.main}>
         <div className={styles.content}>
-          <h1 className={styles.description}>Add your resume!</h1>
+          <h1 className="text-3xl">Add your resume!</h1>
           <form onSubmit={handleSubmit}>
             {tags.map((field, index) => (
               <label key={index}>
@@ -163,8 +167,8 @@ export default function AddResume() {
                   ))}
                   {/* Input area */}
                   <textarea
-                    className={styles.textenter}
                     rows={5}
+                    className="w-full"
                     value={state[index][0]}
                     onChange={(event) => {
                       // Register invalid if line is too long
@@ -206,16 +210,25 @@ export default function AddResume() {
                 <br />
               </label>
             ))}
-            <div className={styles.center}>
-              <input type="submit" value="Submit" />
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Submit
+              </button>
             </div>
           </form>
         </div>
 
-        <h1 className={styles.description}>Reach out!</h1>
-        <Link href="/">
-          <button>Go back home</button>
-        </Link>
+        <div className="flex flex-col items-center">
+          <p>Reach out!</p>
+          <Link href="/">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Go back home
+            </button>
+          </Link>
+        </div>
       </div>
     </MainLayout>
   );
