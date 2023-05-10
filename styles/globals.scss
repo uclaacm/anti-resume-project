@@ -1,7 +1,11 @@
 /* you can remove westwood css if you don't want to use it,
 examples of how it looks here! https://uclaacm.github.io/WestwoodCSS/ */
-@import "westwood.min.css";
+
+/* @import "westwood.min.css"; */
 @import "global_variables";
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 html,
 body {

@@ -1,7 +1,10 @@
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
+import IDCard from '../components/idcard';
 import MainLayout from '../components/MainLayout';
+import Navbar from '../components/Navbar';
+import galleryStyles from '../styles/Gallery.module.scss';
 import styles from '../styles/Home.module.scss';
 import { SECONDS_IN_ONE_DAY } from '../util/constants';
 import getPeople from '../util/sheets';
@@ -12,16 +15,17 @@ interface GalleryProps {
 }
 
 export default function Gallery2022Page({ people }: GalleryProps) {
+  // TODO: 1. sort idcards by year
   return (
     <MainLayout>
       <div className={styles.main}>
-        <h1 className={styles.description}>2022 gallery is here</h1>
-        <ul>
+        <Navbar />
+        <h1 className={galleryStyles.title}>gallery</h1>
+        <h1 className={galleryStyles.subtitle}>2022</h1>
+        <ul className={galleryStyles.gallery}>
           {people.map((p, index) => (
             <li key={index}>
-              {p.dateModified},{p.name},{p.year},{p.imageLink},{p.rejections},
-              {p.notGoodFits},{p.regrets},{p.everydayLs},{p.proudOf},
-              {p.memories},{p.lifeEvents},{p.failures},{p.advice},
+              <IDCard name={p.name} year={p.year} />
             </li>
           ))}
         </ul>

@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
+import Header from './Header';
 
 interface LayoutProps {
   children: JSX.Element;
@@ -19,6 +20,7 @@ export default function MainLayout(props: LayoutProps) {
         <title>Your Next Project!</title>
         <link rel="icon" href="/logo.png" />
       </Head>
+      <Header />
       <main>{props.children}</main>
     </>
   );
