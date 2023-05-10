@@ -5,7 +5,6 @@ import CustomButton from '../components/CustomButton';
 import Footer from '../components/Footer';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/Home.module.scss';
-import Link from 'next/link';
 
 const Home: NextPage = () => {
   return (
@@ -22,8 +21,11 @@ const Home: NextPage = () => {
               <span className={styles.anti}>anti</span> resume
             </div>
             <div className={styles.buttonarea}>
-              <Link href="/addResume"><CustomButton title="create"></CustomButton></Link>
-              <Link href="/gallery2022Page"><CustomButton title="view all"></CustomButton></Link>
+              <CustomButton title="create" url="/addResume"></CustomButton>
+              <CustomButton
+                title="View All"
+                url="/gallery2022Page"
+              ></CustomButton>
             </div>
           </div>
         </div>
