@@ -143,7 +143,9 @@ export default function AddResume() {
     return (
       <MainLayout>
         <div className="flex flex-col items-center">
-          <p className="text-3xl">Sign in with your g.ucla.edu email account to make an anti-resume!</p>
+          <p className="text-3xl">
+            Sign in with your g.ucla.edu email account to make an anti-resume!
+          </p>
         </div>
       </MainLayout>
     );
