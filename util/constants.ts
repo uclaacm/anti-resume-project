@@ -1,5 +1,8 @@
 export const SECONDS_IN_ONE_DAY = 3600 * 24;
 
+export const MIN_GRAD_YEAR = 2000;
+export const MAX_GRAD_YEAR = 2050;
+
 // Questions
 export const questions = {
   NAME: 0, // Name

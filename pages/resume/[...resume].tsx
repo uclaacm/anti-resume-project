@@ -1,10 +1,10 @@
 import type { GetServerSideProps } from 'next';
-import MainLayout from '../components/MainLayout';
-import getPeople from '../util/sheets';
-import { Resume } from '../util/types';
+import MainLayout from '../../components/MainLayout';
+import { getPerson } from '../../util/sheets';
+import { Resume } from '../../util/types';
 
 interface ResumeProps {
-  resume: Resume;
+  resume: Resume | null;
 }
 
 interface FieldProps {
@@ -12,17 +12,27 @@ interface FieldProps {
   text: string;
 }
 
-export const getServerSideProps: GetServerSideProps<{
-  resume: Resume;
-}> = async (context) => {
-  const people = await getPeople(parseInt(context.params.resume[1]));
-  const resume: Resume = people.find(
-    (person) => person.name === context.params.resume[2],
+export const getServerSideProps: GetServerSideProps<ResumeProps> = async (
+  context,
+) => {
+  const resume = await getPerson(
+    parseInt(context.params!.resume![0]),
+    context.params!.resume![1] + '@g.ucla.edu',
   );
   return { props: { resume } };
 };
 
 export default function ShowResume({ resume }: ResumeProps) {
+  if (resume === null) {
+    return (
+      <MainLayout>
+        <div className="flex flex-col items-center">
+          <p className="text-3xl my-5">Error getting resume!</p>
+        </div>
+      </MainLayout>
+    );
+  }
+
   const rejections = resume.rejections
     .split(/\r?\n/)
     .filter((str) => str !== '');
@@ -85,7 +95,7 @@ function Field({ field, text }: FieldProps) {
     <></>
   ) : (
     <div>
-      <p className="font-medium">
+      <p className="text-lg font-medium">
         {field.length} {text}
       </p>
       <ul className="ml-4">

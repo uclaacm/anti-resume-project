@@ -1,23 +1,12 @@
-import { signIn, signOut } from 'next-auth/react';
+import { useSession, signIn, signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
-/*
-interface Session {
-  user: {
-    email: string;
-  }
-}
-*/
-interface HeaderProps {
-  session: any;
-  status: 'loading' | 'authenticated' | 'unauthenticated';
-}
 
 // The approach used in this component shows how to build a sign in and sign out
 // component that works on pages which support both client and server side
 // rendering, and avoids any flash incorrect content on initial page load.
-export default function Header({ session, status }: HeaderProps) {
+export default function Header() {
+  const { data: session, status } = useSession();
   const loading = status === 'loading';
   const { asPath } = useRouter();
 

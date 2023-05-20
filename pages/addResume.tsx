@@ -1,13 +1,11 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import MainLayout from '../components/MainLayout';
-import { questions } from '../util/constants';
+import { MIN_GRAD_YEAR, MAX_GRAD_YEAR, questions } from '../util/constants';
 import { Resume } from '../util/types';
 
 const CHAR_LIMIT = 500;
-const MIN_GRAD_YEAR = 2000;
-const MAX_GRAD_YEAR = 2050;
 
 const tags = [
   'Name',
@@ -96,8 +94,8 @@ export default function AddResume() {
 
     // Make resume type to send to the API
     const userResume: Resume = {
-      dateModified: 'big_date',
-      email: session.user.email,
+      dateModified: 'placeholder',
+      email: 'placeholder',
       name: state[questions.NAME][0],
       year: parseInt(state[questions.YEAR][0]),
       imageLink: state[questions.IMAGE_LINK][0],
@@ -129,24 +127,8 @@ export default function AddResume() {
     });
   };
 
-  const { data: session } = useSession();
-  const [, setContent] = useState();
-
-  // Fetch content from protected route
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch('/api/protected');
-      const json = await res.json();
-      if (json.content) {
-        setContent(json.content);
-      }
-    };
-    fetchData().catch((error) => {
-      console.error(error);
-    });
-  }, [session]);
-
   // If no session exists, display access denied message
+  const { data: session } = useSession();
   if (!session) {
     return (
       <MainLayout>

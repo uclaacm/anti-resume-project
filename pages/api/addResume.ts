@@ -1,7 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { google } from 'googleapis';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { getServerSession } from 'next-auth/next';
 import { Resume } from '../../util/types';
+import { authOptions } from './auth/[...nextauth]';
 
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 const SERVICE_ACCOUNT = process.env.SERVICE_ACCOUNT ?? '';
@@ -11,6 +13,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<string>,
 ) {
+  // Protected function, have to oauth
+  const session = await getServerSession(req, res, authOptions);
+  if (!session) {
+    return;
+  }
+
   // Get JWT Token to access sheet
   const service_account = JSON.parse(SERVICE_ACCOUNT);
   const jwtClient = new google.auth.JWT(
@@ -63,14 +71,14 @@ export default async function handler(
       spreadsheetId: SPREADSHEET_ID,
       valueInputOption: 'USER_ENTERED',
       insertDataOption: 'INSERT_ROWS',
-      range: `${resume.year}!A1:M1`,
+      range: `${resume.year}!A1:N1`,
       requestBody: {
         majorDimension: 'ROWS',
-        range: `${resume.year}!A1:M1`,
+        range: `${resume.year}!A1:N1`,
         values: [
           [
             Date.now().toString(),
-            resume.email,
+            session.user!.email,
             resume.name,
             resume.year,
             resume.imageLink,

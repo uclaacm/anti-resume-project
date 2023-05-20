@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import profile from '../images/samplepic.jpeg';
+import im from '../images/acm-logo.png';
 import { Resume } from '../util/types';
 
 interface IDProps {
@@ -14,16 +14,26 @@ export default function IDCard({ resume }: IDProps) {
     .split(/\r?\n/)
     .filter((str) => str !== '');
   return (
-    <Link href={`/resume/${resume.year}/${resume.name}`}>
-      <div className="flex flex-col w-80 h-80 bg-white cursor-pointer">
+    <Link href={`/resume/${resume.year}/${resume.email.split('@')[0]}`}>
+      <div className="flex flex-col w-80 h-80 bg-white cursor-pointer truncate">
         <div className="flex items-center m-4">
-          <Image
-            className="rounded-full"
-            src={profile}
-            width="100%"
-            height="100%"
-            objectFit="cover"
-          />
+          {resume.imageLink && resume.imageLink.startsWith('https://') ? (
+            <Image
+              className="rounded-full"
+              src={resume.imageLink}
+              width="100%"
+              height="100%"
+              objectFit="cover"
+            />
+          ) : (
+            <Image
+              className="rounded-full"
+              src={im}
+              width="100%"
+              height="100%"
+              objectFit="cover"
+            />
+          )}
           <div className="flex flex-col mx-4">
             <p className="text-2xl">{resume.name}</p>
             <p className="font-light">Class of {resume.year}</p>
