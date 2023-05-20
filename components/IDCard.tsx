@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import im from '../images/acm-logo.png';
+import placeholderImage from '../public/logo.png';
 import { Resume } from '../util/types';
 
 interface IDProps {
@@ -28,7 +28,7 @@ export default function IDCard({ resume }: IDProps) {
           ) : (
             <Image
               className="rounded-full"
-              src={im}
+              src={placeholderImage}
               width="100%"
               height="100%"
               objectFit="cover"
