@@ -1,0 +1,98 @@
+import type { GetServerSideProps } from 'next';
+import MainLayout from '../components/MainLayout';
+import getPeople from '../util/sheets';
+import { Resume } from '../util/types';
+
+interface ResumeProps {
+  resume: Resume;
+}
+
+interface FieldProps {
+  field: string[];
+  text: string;
+}
+
+export const getServerSideProps: GetServerSideProps<{
+  resume: Resume;
+}> = async (context) => {
+  const people = await getPeople(parseInt(context.params.resume[1]));
+  const resume: Resume = people.find(
+    (person) => person.name === context.params.resume[2],
+  );
+  return { props: { resume } };
+};
+
+export default function ShowResume({ resume }: ResumeProps) {
+  const rejections = resume.rejections
+    .split(/\r?\n/)
+    .filter((str) => str !== '');
+  const notGoodFits = resume.notGoodFits
+    .split(/\r?\n/)
+    .filter((str) => str !== '');
+  const regrets = resume.regrets.split(/\r?\n/).filter((str) => str !== '');
+  const everydayLs = resume.everydayLs
+    .split(/\r?\n/)
+    .filter((str) => str !== '');
+  const proudOf = resume.proudOf.split(/\r?\n/).filter((str) => str !== '');
+  const memories = resume.memories.split(/\r?\n/).filter((str) => str !== '');
+  const lifeEvents = resume.lifeEvents
+    .split(/\r?\n/)
+    .filter((str) => str !== '');
+  const failures = resume.failures.split(/\r?\n/).filter((str) => str !== '');
+  const advice = resume.advice.split(/\r?\n/).filter((str) => str !== '');
+
+  return (
+    <MainLayout>
+      <div className="max-w-3xl mx-auto">
+        <div className="flex flex-col items-center">
+          <p className="text-3xl my-5">
+            {resume.name}, {resume.year}
+          </p>
+        </div>
+        <Field
+          field={rejections}
+          text={'"thank you for applying but..." jobs/programs'}
+        />
+        <Field field={notGoodFits} text={"clubs that weren't a good fit"} />
+        <Field field={regrets} text={'regrets I have'} />
+        <Field field={everydayLs} text={'everyday Ls'} />
+        <Field
+          field={proudOf}
+          text={"things I'm proud of that you won't see on a resume"}
+        />
+        <Field
+          field={memories}
+          text={"memories I made when I wasn't studying/working"}
+        />
+        <Field field={lifeEvents} text={'life events that made me stronger'} />
+        <Field
+          field={failures}
+          text={
+            "failures that seemed like the end of the world back then but don't matter in hindsight"
+          }
+        />
+        <Field
+          field={advice}
+          text={'pieces of advice you would give to your undergraduate self'}
+        />
+      </div>
+    </MainLayout>
+  );
+}
+
+function Field({ field, text }: FieldProps) {
+  return field.length == 0 ? (
+    <></>
+  ) : (
+    <div>
+      <p className="font-medium">
+        {field.length} {text}
+      </p>
+      <ul className="ml-4">
+        {field.map((l, index) => (
+          <li key={index}>{l}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}

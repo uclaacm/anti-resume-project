@@ -1,11 +1,9 @@
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
-import IDCard from '../components/idcard';
+import IDCard from '../components/idcard-old';
 import MainLayout from '../components/MainLayout';
-import Navbar from '../components/Navbar';
 import galleryStyles from '../styles/Gallery.module.scss';
-import styles from '../styles/Home.module.scss';
 import { SECONDS_IN_ONE_DAY } from '../util/constants';
 import getPeople from '../util/sheets';
 import { Resume } from '../util/types';
@@ -18,10 +16,8 @@ export default function Gallery2022Page({ people }: GalleryProps) {
   // TODO: 1. sort idcards by year
   return (
     <MainLayout>
-      <div className={styles.main}>
-        <Navbar />
-        <h1 className={galleryStyles.title}>gallery</h1>
-        <h1 className={galleryStyles.subtitle}>2022</h1>
+      <div className="flex flex-col items-center">
+        <p className="text-3xl mb-5">Gallery for 2022</p>
         <ul className={galleryStyles.gallery}>
           {people.map((p, index) => (
             <li key={index}>

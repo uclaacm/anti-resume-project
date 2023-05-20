@@ -1,5 +1,7 @@
+import { useSession } from 'next-auth/react';
 import Head from 'next/head';
 import React from 'react';
+import Footer from './Footer';
 import Header from './Header';
 
 interface LayoutProps {
@@ -7,6 +9,7 @@ interface LayoutProps {
 }
 
 export default function MainLayout(props: LayoutProps) {
+  const { data: session, status } = useSession();
   return (
     <>
       <Head>
@@ -20,8 +23,9 @@ export default function MainLayout(props: LayoutProps) {
         <title>Your Next Project!</title>
         <link rel="icon" href="/logo.png" />
       </Head>
-      <Header />
+      <Header session={session} status={status} />
       <main>{props.children}</main>
+      <Footer />
     </>
   );
 }

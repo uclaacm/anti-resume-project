@@ -1,5 +1,5 @@
 import React from 'react';
-import IDCard from '../components/idcard';
+import IDCard from '../components/idcard-old';
 import MainLayout from '../components/MainLayout';
 import styles from '../styles/Gallery.module.scss';
 

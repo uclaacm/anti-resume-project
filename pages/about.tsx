@@ -1,35 +1,29 @@
 import Link from 'next/link';
 import React from 'react';
-import Footer from '../components/Footer';
 import MainLayout from '../components/MainLayout';
-import styles from '../styles/Home.module.scss';
 
 export default function AboutPage() {
   return (
     <MainLayout>
-      <>
-        <div className={styles.content}>
-          <h1 className={styles.subheading}>Background</h1>
-          <p className={styles.description}>
+      <div className="max-w-3xl mx-auto">
+        <div className="flex flex-col items-center">
+          <p className="text-3xl mb-5">About</p>
+          <p className="text-xl my-2">Background</p>
+          <p>
             You are more than your resume. The goal of Anti-Resume is to provide
             a platform that showcases the failures and accomplishments of Bruins
             from all backgrounds. We at ACM aim to normalize discussions of
             failure and imposter syndrome and promote a campus community where
             everyone can thrive.
           </p>
-          <h1 className={styles.subheading}>
-            How can I contribute my Anti-Resume?
-          </h1>
+          <p className="text-xl my-2">How can I contribute my Anti-Resume?</p>
           <Link href="/addResume">
-            <button className={styles.btn}>Add your anti-resume</button>
-          </Link>
-          <h1 className={styles.subheading}>Reach out!</h1>
-          <Link href="/">
-            <button className={styles.btn}>view all</button>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Create an anti-resume!
+            </button>
           </Link>
         </div>
-        <Footer />
-      </>
+      </div>
     </MainLayout>
   );
 }

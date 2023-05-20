@@ -70,6 +70,7 @@ export default async function handler(
         values: [
           [
             Date.now().toString(),
+            resume.email,
             resume.name,
             resume.year,
             resume.imageLink,
