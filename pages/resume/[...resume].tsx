@@ -1,7 +1,9 @@
 import type { GetServerSideProps } from 'next';
+import Image from 'next/image';
 import MainLayout from '../../components/MainLayout';
 import { getPerson } from '../../util/sheets';
 import { Resume } from '../../util/types';
+import placeholderImage from '../../public/logo.png';
 
 interface ResumeProps {
   resume: Resume | null;
@@ -58,6 +60,23 @@ export default function ShowResume({ resume }: ResumeProps) {
           <p className="text-3xl my-5">
             {resume.name}, {resume.year}
           </p>
+          {resume.imageLink && resume.imageLink.startsWith('https://') ? (
+            <Image
+              className="rounded-full"
+              src={resume.imageLink}
+              width="150rem"
+              height="150rem"
+              objectFit="cover"
+            />
+          ) : (
+            <Image
+              className="rounded-full"
+              src={placeholderImage}
+              width="150rem"
+              height="150rem"
+              objectFit="cover"
+            />
+          )}
         </div>
         <Field
           field={rejections}
