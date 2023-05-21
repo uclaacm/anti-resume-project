@@ -1,9 +1,9 @@
 import type { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import MainLayout from '../../components/MainLayout';
+import placeholderImage from '../../public/logo.png';
 import { getPerson } from '../../util/sheets';
 import { Resume } from '../../util/types';
-import placeholderImage from '../../public/logo.png';
 
 interface ResumeProps {
   resume: Resume | null;
