@@ -1,52 +1,62 @@
-import type { NextPage } from 'next';
-import Image from 'next/image';
+import type { GetStaticProps } from 'next';
 import Link from 'next/link';
-import Footer from '../components/Footer';
-//import LinkButton from '../components/LinkButton';
-import IDCard from '../components/idcard';
+import IDCard from '../components/IDCard';
 import MainLayout from '../components/MainLayout';
-import styles from '../styles/Home.module.scss';
+import { SECONDS_IN_ONE_DAY } from '../util/constants';
+import { getPeople } from '../util/sheets';
+import { Resume } from '../util/types';
 
-const arr = Array.from({ length: 3 }).fill(6);
-function Gallery() {
-  return (
-    <div className={styles.gallery}>
-      {arr.map((item, index) => (
-        <IDCard key={index} name="RJ Maokhamphiou" year={2022} />
-      ))}
-    </div>
-  );
+interface GalleryProps {
+  people: Resume[];
 }
 
-const Home: NextPage = () => {
-  return (
-    <MainLayout>
-      <>
-        <div className={styles.mainlanding}>
-          <div className={styles.headerarea}>
-            <Image
-              src="/acm-logo-wordmark-extended.png"
-              width={132}
-              height={50}
-            />
-            <div className={styles.headertext}>
-              <span className={styles.anti}>anti</span> resume
-            </div>
-            <div className={styles.buttonarea}>
-              <Link className={styles.button} href="/addResume">
-                <button className={styles.buttonmain}>Create</button>
-              </Link>
-              <Link className={styles.button} href="/gallery2022Page">
-                <button className={styles.buttonmain}>View All</button>
-              </Link>
-            </div>
-          </div>
-        </div>
-        <Gallery />
-        <Footer />
-      </>
-    </MainLayout>
-  );
+export const getStaticProps: GetStaticProps<GalleryProps> = async () => {
+  const people = await getPeople(2022);
+  return {
+    props: {
+      people,
+    },
+    revalidate: SECONDS_IN_ONE_DAY,
+  };
 };
 
-export default Home;
+export default function Home({ people }: GalleryProps) {
+  return (
+    <MainLayout>
+      <div className="flex flex-col items-center">
+        <div className="text-8xl my-5">
+          <span className="text-red-500">anti-</span>resume
+        </div>
+        <div className="flex gap-10 mb-5">
+          <Link href="/addResume">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Create an anti-resume!
+            </button>
+          </Link>
+        </div>
+        <div className="flex gap-10 mb-5">
+          {Array.from(Array(5).keys()).map((x) => (
+            <Link key={x} href={`/gallery/${2020 + x}`}>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                {2020 + x}
+              </button>
+            </Link>
+          ))}
+        </div>
+        <ul className="flex flex-wrap justify-center gap-5">
+          {people.map((resume, index) => (
+            <li key={index}>
+              <IDCard resume={resume} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </MainLayout>
+  );
+}
+/*
+<Image
+  src="/acm-logo-wordmark-extended.png"
+  width={132}
+  height={50}
+/>*/

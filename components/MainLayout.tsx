@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
+import Footer from './Footer';
 import Header from './Header';
 
 interface LayoutProps {
@@ -22,6 +23,7 @@ export default function MainLayout(props: LayoutProps) {
       </Head>
       <Header />
       <main>{props.children}</main>
+      <Footer />
     </>
   );
 }

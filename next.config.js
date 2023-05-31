@@ -5,6 +5,16 @@ const nextConfig = {
   eslint: {
     dirs: ['components', 'pages'],
   },
+  images: {
+    // Display images from any https url
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+        pathname: '**',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;
