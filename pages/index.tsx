@@ -23,8 +23,8 @@ export const getStaticProps: GetStaticProps<GalleryProps> = async () => {
 export default function Home({ people }: GalleryProps) {
   return (
     <MainLayout>
-      <div className="flex flex-col items-center">
-        <div className="text-8xl my-5">
+      <div className="max-w-screen flex flex-col items-center">
+        <div className="text-center text-4xl font-bold my-5 lg:text-8xl ">
           <span className="text-red-500">anti-</span>resume
         </div>
         <div className="flex gap-10 mb-5">
@@ -34,16 +34,16 @@ export default function Home({ people }: GalleryProps) {
             </button>
           </Link>
         </div>
-        <div className="flex gap-10 mb-5">
-          {Array.from(Array(5).keys()).map((x) => (
-            <Link key={x} href={`/gallery/${2020 + x}`}>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                {2020 + x}
-              </button>
-            </Link>
-          ))}
-        </div>
-        <ul className="flex flex-wrap justify-center gap-5">
+          <div className="w-screen flex justify-start lg:justify-center gap-10 mb-5 overflow-x-auto">
+            {Array.from(Array(7).keys()).map((x) => (
+              <Link key={x} href={`/gallery/${2020 + x}`}>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                  {2020 + x}
+                </button>
+              </Link>
+            ))}
+          </div>
+        <ul className="max-w-screen flex flex-wrap justify-center gap-5">
           {people.map((resume, index) => (
             <li key={index}>
               <IDCard resume={resume} />
