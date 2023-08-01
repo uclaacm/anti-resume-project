@@ -19,7 +19,7 @@
     "@mui/material": "^5.10.1",
     "@mui/system": "^5.10.10",
     "dotenv": "^16.0.1",
-    "googleapis": "^105.0.0",
+    "googleapis": "^123.0.0",
     "next": "^12.3.1",
     "next-auth": "^4.22.1",
     "react": "18.2.0",
